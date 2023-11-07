@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Header from "./Header";
+import Countries from "./Countries";
 import styles from "./Homepage.module.css";
 import { GlobalContext } from "../contexts/GlobalContext";
 
@@ -95,8 +96,8 @@ export default function Homepage() {
             </div>
           </div>
         </div>
+        <Countries />
       </main>
-      {/* <Countries /> */}
     </>
   );
 }

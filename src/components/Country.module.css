@@ -1,0 +1,37 @@
+.country {
+  border-radius: 0.8rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.countryImage {
+  width: 100%;
+  max-height: 13rem;
+}
+
+.countryHeading {
+  margin-bottom: 1.5rem;
+}
+
+.countryText {
+  padding: 2rem;
+  font-size: 1.4rem;
+}
+
+.countryText p {
+  font-weight: 600;
+}
+
+.countryText span {
+  font-weight: 400;
+}
+
+.itemLight {
+  background-color: var(--white);
+  color: var(--very-dark-blue-lm);
+}
+
+.itemDark {
+  background-color: var(--dark-blue-dm);
+  color: var(--white);
+}
