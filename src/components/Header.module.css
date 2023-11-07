@@ -2,7 +2,7 @@ header {
   background-color: var(--white);
   padding: 2.4rem 1.6rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
-  position: fixed;
+  /* position: fixed; */
   z-index: 10;
   width: 100vw;
   top: 0;
@@ -37,7 +37,7 @@ header {
 }
 
 .mainHeading {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .headerBtn {

@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Country from "./Country";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 export default function Countries() {
-  const [countries, setCountries] = useState([]);
-
-  const fetchCountries = async () => {
-    const res = await fetch(`https://restcountries.com/v3.1/all`);
-    const data = await res.json();
-    setCountries(data);
-    // console.log(data);
-  };
-
-  useEffect(() => {
-    fetchCountries();
-  }, []);
-  //   fetchCountries();
+  const { countries } = useContext(GlobalContext);
   return (
     <main>
       {countries.map((country) => (
