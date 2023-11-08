@@ -10,7 +10,7 @@ export const GlobalStorage = ({ children }) => {
   const [region, setRegion] = useState("all");
 
   // Fetch all countries on homepage
-  useEffect(() => {
+  useEffect(function () {
     async function fetchData() {
       const res = await fetch(`https://restcountries.com/v3.1/all`);
       const data = await res.json();
@@ -19,6 +19,58 @@ export const GlobalStorage = ({ children }) => {
     }
     fetchData();
   }, []);
+
+  //Fetch countries by search name
+  useEffect(
+    function () {
+      if (search && search.length >= 3) {
+        async function fetchData() {
+          const res = await fetch(
+            `https://restcountries.com/v2/name/${search}`
+          );
+          const data = await res.json();
+          setCountries(data);
+        }
+        fetchData();
+      } else if (search === "") {
+        async function fetchData() {
+          const res = await fetch(`https://restcountries.com/v3.1/all`);
+          const data = await res.json();
+          setCountries(data);
+          // console.log(data);
+        }
+        fetchData();
+      }
+    },
+    [search]
+  );
+  //Fetch countries by regions
+  useEffect(
+    function () {
+      if (region !== "all") {
+        async function fetchData() {
+          const res = await fetch(
+            `https://restcountries.com/v2/region/${region}`
+          );
+          const data = await res.json();
+          setCountries(data);
+          setOpenFilter(false);
+          // console.log(data);
+        }
+        fetchData();
+      } else if (region === "all") {
+        async function fetchData() {
+          const res = await fetch("https://restcountries.com/v2/all");
+          const data = await res.json();
+          setCountries(data);
+          setOpenFilter(false);
+          // console.log(data);
+        }
+        fetchData();
+      }
+    },
+    [region]
+  );
 
   return (
     <GlobalContext.Provider

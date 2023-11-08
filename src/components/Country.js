@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import styles from "./Country.module.css";
 import { GlobalContext } from "../contexts/GlobalContext";
 
-export default function Country({ country }) {
+export default function Country({ country, name, population }) {
   const { isDark } = useContext(GlobalContext);
 
-  // console.log(country);
   return (
     <div
       className={`${styles.country} ${
@@ -18,9 +17,11 @@ export default function Country({ country }) {
         alt="country"
       ></img>
       <div className={styles.countryText}>
-        <h3 className={styles.countryHeading}>{country.name.common}</h3>
+        <h3 className={styles.countryHeading}>
+          {country.name.common ? country.name.common : name}
+        </h3>
         <p>
-          Population: <span>{country.population.toLocaleString()}</span>
+          Population: <span>{population.toLocaleString()}</span>
         </p>
         <p>
           Region: <span>{country.region}</span>
