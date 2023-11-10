@@ -2,6 +2,8 @@
   border-radius: 0.8rem;
   overflow: hidden;
   background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .countryImage {

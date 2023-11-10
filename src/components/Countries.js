@@ -12,6 +12,7 @@ export default function Countries() {
           name={country.name}
           country={country}
           population={country.population}
+          alpha={country.alpha2Code}
         />
       ))}
     </div>
