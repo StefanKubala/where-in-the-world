@@ -1,3 +1,7 @@
+# Where in the world
+
+This is an application that allows users to search for any country in the world. Users can search for a country by name or by continent. The application is built using React and utilizes React Router, making it a single-page application. Users have the option to switch to dark mode. When clicking on a country, a dedicated subpage opens, providing detailed information about that specific country, including details like the national language, capital city, neighboring countries, and more. Additionally, when clicking on one of the neighboring countries, a new subpage opens, offering information about the selected country.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
