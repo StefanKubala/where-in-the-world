@@ -22,8 +22,21 @@ export default function Details() {
     }
     fetchData();
   }, []);
-  console.log(data);
-  useEffect(function () {});
+  console.log(data.name);
+
+  //Change page title
+  useEffect(
+    function () {
+      if (!data.name) return;
+      document.title = `Country | ${data.name}`;
+
+      return function () {
+        document.title = "Where in the world";
+      };
+    },
+    [data.name]
+  );
+
   return (
     <>
       <Header />
