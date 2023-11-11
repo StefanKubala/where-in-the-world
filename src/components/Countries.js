@@ -5,11 +5,14 @@ import styles from "./Countries.module.css";
 
 export default function Countries() {
   const { countries } = useContext(GlobalContext);
+  // console.log(countries);
+
   return (
     <div className={styles.countries}>
       {countries?.map((country) => (
         <Country
           name={country.name}
+          key={country.alpha3Code}
           country={country}
           population={country.population}
           alpha={country.alpha2Code}

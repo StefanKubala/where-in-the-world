@@ -12,7 +12,7 @@ export const GlobalStorage = ({ children }) => {
   // Fetch all countries on homepage
   useEffect(function () {
     async function fetchData() {
-      const res = await fetch(`https://restcountries.com/v3.1/all`);
+      const res = await fetch(`https://restcountries.com/v2/all`);
       const data = await res.json();
       setCountries(data);
       // console.log(data);
@@ -34,10 +34,9 @@ export const GlobalStorage = ({ children }) => {
         fetchData();
       } else if (search === "") {
         async function fetchData() {
-          const res = await fetch(`https://restcountries.com/v3.1/all`);
+          const res = await fetch(`https://restcountries.com/v2/all`);
           const data = await res.json();
           setCountries(data);
-          // console.log(data);
         }
         fetchData();
       }

@@ -9,20 +9,63 @@ export default function Details() {
   const { isDark } = useContext(GlobalContext);
   const { name } = useParams();
   const [data, setData] = useState([]);
+  const [updatedData, setUpdatedData] = useState("");
+  const [borders, setBorders] = useState([]);
   const [currencies, setCurrencies] = useState([]);
-  const [borders, setBorderd] = useState([]);
   const [languages, setLanguages] = useState([]);
 
+  const uniqueBorders = [...new Set(borders.map(JSON.stringify))].map(
+    JSON.parse
+  );
+  console.log(name);
   // Fetch data on component mount
-  useEffect(function () {
-    async function fetchData() {
-      const res = await fetch(`https://restcountries.com/v2/alpha/${name}`);
-      const json = await res.json();
-      setData(json);
-    }
-    fetchData();
-  }, []);
-  console.log(data.name);
+  useEffect(
+    function () {
+      async function fetchData() {
+        const res = await fetch(`https://restcountries.com/v2/alpha/${name}`);
+        const json = await res.json();
+        setData(json);
+      }
+      fetchData();
+    },
+    [name]
+  );
+  //   console.log(borders);
+
+  //   useEffect(async () => {
+  //     if (updateData != "") {
+  //       setCurrencies([]);
+  //       setBorders([]);
+  //       setUpdateData("");
+  //       const response = await fetch(
+  //         `https://restcountries.com/v2/alpha/${updateData}`
+  //       );
+  //       const json = await response.json();
+  //       !json.status && setData(json);
+  //       navigate(`/${updateData}`);
+  //     }
+  //   }, [updateData]);
+
+  useEffect(
+    function () {
+      if (updatedData !== "") {
+        async function updateDataFunc() {
+          setCurrencies([]);
+          setBorders([]);
+          setUpdatedData("");
+          const response = await fetch(
+            `https://restcountries.com/v2/alpha/${updatedData}`
+          );
+          const json = await response.json();
+          console.log(json);
+          !json.status && setData(json);
+          navigate(`/${updatedData}`);
+        }
+        updateDataFunc();
+      }
+    },
+    [updatedData, navigate]
+  );
 
   //Change page title
   useEffect(
@@ -35,6 +78,37 @@ export default function Details() {
       };
     },
     [data.name]
+  );
+
+  // Define languages, currencies and bordeer countries
+  useEffect(
+    function () {
+      async function addData() {
+        data !== "" &&
+          data.currencies !== undefined &&
+          data.currencies.map((currency) => {
+            setCurrencies(() => [currency.name]);
+          });
+
+        data !== "" &&
+          data.languages !== undefined &&
+          data.languages.map((language) => {
+            setLanguages(() => [language.name]);
+          });
+        data !== "" &&
+          data.borders !== undefined &&
+          data.borders.map(async (border) => {
+            const response = await fetch(
+              `https://restcountries.com/v2/alpha/${border}`
+            );
+            const json = await response.json();
+            // console.log(json);
+            !json.status && setBorders((oldArray) => [...oldArray, json]);
+          });
+      }
+      addData();
+    },
+    [data]
   );
 
   return (
@@ -50,7 +124,7 @@ export default function Details() {
             className={`${styles.detailsBtn} ${
               isDark ? styles.btnDark : styles.btnLight
             }`}
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
           >
             &larr; Back
           </button>
@@ -89,21 +163,37 @@ export default function Details() {
                 <p>
                   <strong>Capital:</strong> {data.capital}
                 </p>
-                <p>
-                  <strong>Border Countries:</strong> {borders}
-                </p>
               </div>
               <div className={styles.rightText}>
                 <p>
                   <strong>Top Level Domain:</strong> {data.topLevelDomain}
                 </p>
                 <p>
-                  <strong>Currencies:</strong>{" "}
+                  <strong>Currencies: </strong>
+                  {currencies.join(", ")}
                 </p>
                 <p>
-                  <strong>Languages:</strong>{" "}
+                  <strong>Languages: </strong>
+                  {languages.join(", ")}
                 </p>
               </div>
+            </div>
+            <div>
+              <p className={styles.borders}>
+                <strong>Border Countries:</strong>
+                {uniqueBorders.map((border) => (
+                  <button
+                    aria-label={`Details about ${border.name}`}
+                    key={border.alpha2Code}
+                    className={`${styles.borderBtn} ${
+                      isDark ? styles.btnDark : styles.btnLight
+                    }`}
+                    onClick={() => setUpdatedData(border.alpha2Code)}
+                  >
+                    {border.name}
+                  </button>
+                ))}
+              </p>
             </div>
           </div>
         </div>

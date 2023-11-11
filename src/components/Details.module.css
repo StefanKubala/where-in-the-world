@@ -25,6 +25,29 @@
   transition: all 0.2s;
 }
 
+.borderBtn {
+  border: none;
+  background-color: var(--white);
+  border-radius: 0.8rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s;
+}
+
+.borders {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: all 0.2s;
+}
+
+.borders button:hover {
+  transform: scale(1.1);
+}
+
 .detailsBtn:hover {
   transform: scale(1.1);
 }
@@ -55,7 +78,7 @@
 }
 
 .imageContainer {
-  width: 50%;
+  width: 40%;
 }
 
 .detailsHeading {
@@ -67,7 +90,7 @@
 }
 
 .textContainer {
-  width: 50%;
+  width: 60%;
   font-size: 1.8rem;
   padding: 4rem;
 }
