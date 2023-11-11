@@ -25,7 +25,7 @@ main {
 .input {
   padding: 2rem 1.6rem 2rem 6rem;
   border: none;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   width: 40rem;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.08);
   background: url("../assets/search.svg") no-repeat 2.4rem;
@@ -52,7 +52,7 @@ main {
   font-size: 1.6rem;
   padding: 1.2rem 2.4rem;
   gap: 24px;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.3s;
@@ -93,4 +93,30 @@ main {
 
 .filter > ul > li {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .input {
+    width: 100%;
+  }
+
+  .search {
+    flex-direction: column;
+  }
+
+  .filter button {
+    padding: 2.2rem;
+    width: 55%;
+    margin-top: 2rem;
+  }
+
+  .filter > ul {
+    top: 9rem;
+  }
 }

@@ -6,5 +6,34 @@
   gap: 7rem;
   padding-bottom: 3rem;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(4, 1fr);*/
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+@media only screen and (max-width: 1200px) {
+  .countries {
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+    margin: 1rem 3rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .countries {
+    margin: 1rem 3rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .countries {
+    margin: 1rem 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .countries {
+    margin: 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+  }
 }

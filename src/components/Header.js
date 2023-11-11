@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import styles from "./Header.module.css";
 import { GlobalContext } from "../contexts/GlobalContext";
-import { ReactComponent as Moon } from "../assets/moon.svg";
+import { ReactComponent as MoonLight } from "../assets/moon-light.svg";
+import { ReactComponent as MoonDark } from "../assets/moon-dark.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
@@ -14,7 +15,12 @@ export default function Header() {
           <h1 className={styles.mainHeading}>Where in the world?</h1>
         </div>
         <button className={styles.headerBtn} onClick={() => setIsDark(!isDark)}>
-          <Moon className={styles.moon} /> Dark Mode
+          {isDark ? (
+            <MoonDark className={styles.moon} />
+          ) : (
+            <MoonLight className={styles.moon} />
+          )}{" "}
+          Dark Mode
         </button>
       </div>
     </header>

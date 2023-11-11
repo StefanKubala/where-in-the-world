@@ -30,21 +30,6 @@ export default function Details() {
     },
     [name]
   );
-  //   console.log(borders);
-
-  //   useEffect(async () => {
-  //     if (updateData != "") {
-  //       setCurrencies([]);
-  //       setBorders([]);
-  //       setUpdateData("");
-  //       const response = await fetch(
-  //         `https://restcountries.com/v2/alpha/${updateData}`
-  //       );
-  //       const json = await response.json();
-  //       !json.status && setData(json);
-  //       navigate(`/${updateData}`);
-  //     }
-  //   }, [updateData]);
 
   useEffect(
     function () {
