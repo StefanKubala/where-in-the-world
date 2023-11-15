@@ -5,7 +5,6 @@ import styles from "./Countries.module.css";
 
 export default function Countries() {
   const { countries } = useContext(GlobalContext);
-  // console.log(countries);
 
   return (
     <div className={styles.countries}>

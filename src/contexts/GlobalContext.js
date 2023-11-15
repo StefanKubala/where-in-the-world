@@ -15,7 +15,6 @@ export const GlobalStorage = ({ children }) => {
       const res = await fetch(`https://restcountries.com/v2/all`);
       const data = await res.json();
       setCountries(data);
-      // console.log(data);
     }
     fetchData();
   }, []);
@@ -54,7 +53,6 @@ export const GlobalStorage = ({ children }) => {
           const data = await res.json();
           setCountries(data);
           setOpenFilter(false);
-          // console.log(data);
         }
         fetchData();
       } else if (region === "all") {
@@ -63,7 +61,6 @@ export const GlobalStorage = ({ children }) => {
           const data = await res.json();
           setCountries(data);
           setOpenFilter(false);
-          // console.log(data);
         }
         fetchData();
       }

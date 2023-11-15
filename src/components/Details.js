@@ -17,7 +17,6 @@ export default function Details() {
   const uniqueBorders = [...new Set(borders.map(JSON.stringify))].map(
     JSON.parse
   );
-  console.log(name);
   // Fetch data on component mount
   useEffect(
     function () {
@@ -42,7 +41,6 @@ export default function Details() {
             `https://restcountries.com/v2/alpha/${updatedData}`
           );
           const json = await response.json();
-          console.log(json);
           !json.status && setData(json);
           navigate(`/${updatedData}`);
         }
@@ -87,7 +85,6 @@ export default function Details() {
               `https://restcountries.com/v2/alpha/${border}`
             );
             const json = await response.json();
-            // console.log(json);
             !json.status && setBorders((oldArray) => [...oldArray, json]);
           });
       }

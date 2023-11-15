@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 export default function Country({ country, name, population, alpha }) {
   const navigate = useNavigate();
   const { isDark } = useContext(GlobalContext);
-  // console.log(alpha);
   return (
     <div
       className={`${styles.country} ${
