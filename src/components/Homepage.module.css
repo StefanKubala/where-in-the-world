@@ -95,6 +95,25 @@ main {
   cursor: pointer;
 }
 
+.loader {
+  border: 0.8rem solid rgba(0, 0, 0, 0.2);
+  border-top: 0.8rem solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 6.4rem;
+  height: 6.4rem;
+  animation: loader 1s linear infinite;
+  margin: 6.4rem auto;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   .container {
     padding: 0 3rem;

@@ -8,6 +8,7 @@ export const GlobalStorage = ({ children }) => {
   const [search, setSearch] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
   const [region, setRegion] = useState("all");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch all countries on homepage
   useEffect(function () {
@@ -15,6 +16,7 @@ export const GlobalStorage = ({ children }) => {
       const res = await fetch(`https://restcountries.com/v2/all`);
       const data = await res.json();
       setCountries(data);
+      setIsLoading(false);
     }
     fetchData();
   }, []);
@@ -23,19 +25,23 @@ export const GlobalStorage = ({ children }) => {
   useEffect(
     function () {
       if (search && search.length >= 3) {
+        setIsLoading(true);
         async function fetchData() {
           const res = await fetch(
             `https://restcountries.com/v2/name/${search}`
           );
           const data = await res.json();
           setCountries(data);
+          setIsLoading(false);
         }
         fetchData();
       } else if (search === "") {
         async function fetchData() {
+          setIsLoading(true);
           const res = await fetch(`https://restcountries.com/v2/all`);
           const data = await res.json();
           setCountries(data);
+          setIsLoading(false);
         }
         fetchData();
       }
@@ -45,6 +51,7 @@ export const GlobalStorage = ({ children }) => {
   //Fetch countries by regions
   useEffect(
     function () {
+      setIsLoading(true);
       if (region !== "all") {
         async function fetchData() {
           const res = await fetch(
@@ -53,6 +60,7 @@ export const GlobalStorage = ({ children }) => {
           const data = await res.json();
           setCountries(data);
           setOpenFilter(false);
+          setIsLoading(false);
         }
         fetchData();
       } else if (region === "all") {
@@ -61,6 +69,7 @@ export const GlobalStorage = ({ children }) => {
           const data = await res.json();
           setCountries(data);
           setOpenFilter(false);
+          setIsLoading(false);
         }
         fetchData();
       }
@@ -80,6 +89,7 @@ export const GlobalStorage = ({ children }) => {
         setOpenFilter,
         region,
         setRegion,
+        isLoading,
       }}
     >
       {children}

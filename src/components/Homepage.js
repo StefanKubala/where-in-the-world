@@ -13,7 +13,9 @@ export default function Homepage() {
     openFilter,
     // region,
     setRegion,
+    isLoading,
   } = useContext(GlobalContext);
+  console.log(isLoading);
   return (
     <>
       <Header />
@@ -96,7 +98,7 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <Countries />
+        {isLoading ? <div className={styles.loader}></div> : <Countries />}
       </main>
     </>
   );
