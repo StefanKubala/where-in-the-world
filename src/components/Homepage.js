@@ -15,7 +15,7 @@ export default function Homepage() {
     setRegion,
     isLoading,
   } = useContext(GlobalContext);
-  console.log(isLoading);
+
   return (
     <>
       <Header />

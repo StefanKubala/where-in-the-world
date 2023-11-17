@@ -11,8 +11,8 @@ function App() {
       <GlobalStorage>
         <Routes>
           <Route path="/" index element={<Homepage />}></Route>
-          <Route path="/*" element={<PageNotFound />}></Route>
           <Route path="/:name" element={<Details />}></Route>
+          <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </GlobalStorage>
     </BrowserRouter>
