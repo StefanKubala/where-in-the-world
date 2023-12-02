@@ -9,6 +9,7 @@ export const GlobalStorage = ({ children }) => {
   const [openFilter, setOpenFilter] = useState(false);
   const [region, setRegion] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   // Fetch all countries on homepage
   useEffect(function () {
@@ -30,7 +31,13 @@ export const GlobalStorage = ({ children }) => {
           const res = await fetch(
             `https://restcountries.com/v2/name/${search}`
           );
+          if (!res.ok) {
+            setIsLoading(false);
+            setError("Invalid search value");
+            return;
+          }
           const data = await res.json();
+          setError("");
           setCountries(data);
           setIsLoading(false);
         }
@@ -38,12 +45,15 @@ export const GlobalStorage = ({ children }) => {
       } else if (search === "") {
         async function fetchData() {
           setIsLoading(true);
+          setError("");
           const res = await fetch(`https://restcountries.com/v2/all`);
           const data = await res.json();
           setCountries(data);
           setIsLoading(false);
         }
         fetchData();
+      } else {
+        setCountries([]);
       }
     },
     [search]
@@ -90,6 +100,7 @@ export const GlobalStorage = ({ children }) => {
         region,
         setRegion,
         isLoading,
+        error,
       }}
     >
       {children}

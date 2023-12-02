@@ -14,6 +14,7 @@ export default function Homepage() {
     // region,
     setRegion,
     isLoading,
+    error,
   } = useContext(GlobalContext);
 
   return (
@@ -31,6 +32,7 @@ export default function Homepage() {
               placeholder="Search for a country..."
               onChange={(e) => setSearch(e.target.value)}
             ></input>
+            <p className={styles.error}>{error}</p>
 
             <div
               className={`${styles.filter} ${
